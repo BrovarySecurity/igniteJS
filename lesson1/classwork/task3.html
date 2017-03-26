@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Task3</title>
+    <script>
+        var arr = [1, 2, 31, 24, -67, 5, 3, 555, 79, -4, 21, 33, 89, -90];
+        var arr1 = [];
+        var max = getMaxValue(arr);
+        var min = getMinValue(arr);
+        var positiveAndEvenNumbers = getPositiveAndEvenNumbers(arr);
+        document.write('Max value: ' + max + '<br/>');
+        document.write('Min value: ' + min + '<br/>');
+        document.write('Positive and even numbers: ' + arr1.join(', '));
+
+        // get max element of arr
+        function getMaxValue(arr) {
+            var max = arr[0]; // the first element of array
+            for (var i = 0; i < arr.length; i++) { // simple loop for enumeration of elements
+                if (max < arr[i]) {
+                    max = arr[i]
+                } // if element greater than in var max, assign its value to the variable max
+            }
+            return max; //return max value
+        }
+
+        // get min element of arr
+        function getMinValue(arr) {
+            var min = arr[0]; // the first element of array
+            for (var i = 0; i < arr.length; i++) { // simple loop for enumeration of elements
+                if (min > arr[i]) {
+                    min = arr[i]
+                }
+            }
+            return min;
+        }
+
+        function getPositiveAndEvenNumbers(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] > 0 && arr[i] % 2 == 0) {
+                    arr1.push(arr[i]);
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

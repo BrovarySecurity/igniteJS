@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Task2</title>
+    <script>
+    function isEmpty(obj) {
+      for (var key in obj) { //if object schedule will be empty, var = undefined, and this loop will be skipped
+        return false; //return false, when var is not undefined
+      }
+      return true; // return true, when var = undefined
+    }
+
+    var schedule = {}; //created epmty object
+
+    alert( isEmpty(schedule) ); // true
+
+    schedule["8:30"] = "подъём"; //added the key to schedule;
+
+    alert( isEmpty(schedule) ); // false
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
