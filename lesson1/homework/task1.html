@@ -7,28 +7,17 @@
     <script>
         arr = ["test", 2, 1.5, false];
 
-        if ([].indexOf) {
-
-            var find = function(array, value) {
-                return array.indexOf(value);
+        function find(array, value) {
+            for (var i = 0; i < array.length; i++) {
+                if (array[i] === value) return i;
             }
-
-        } else {
-            var find = function(array, value) {
-                for (var i = 0; i < array.length; i++) {
-                    if (array[i] === value) return i;
-                }
-
-                return -1;
-            }
-
+            return -1;
         }
 
-        alert(find(arr, "test")); // 0
-        alert(find(arr, 2)); // 1
-        find(arr, 1.5); // 2
-
-        find(arr, 0); // -1
+        document.write('Number of "test" in arr is ' + find(arr, "test") + '<br/>');
+        document.write('Number of 2 in arr is ' + find(arr, 2) + '<br/>');
+        document.write('Number of 1.5 in arr is ' + find(arr, 1.5) + '<br/>');
+        document.write('Number of 0 in arr is ' + find(arr, 0) + '<br/>');
     </script>
 </head>
 
