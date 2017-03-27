@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Task2</title>
-    <script>
-      
-    </script>
-  </head>
-  <body>
 
-  </body>
+<head>
+    <meta charset="utf-8">
+    <title>Task1</title>
+    <script>
+        arr = ["test", 2, 1.5, false];
+
+        if ([].indexOf) {
+
+            var find = function(array, value) {
+                return array.indexOf(value);
+            }
+
+        } else {
+            var find = function(array, value) {
+                for (var i = 0; i < array.length; i++) {
+                    if (array[i] === value) return i;
+                }
+
+                return -1;
+            }
+
+        }
+
+        alert(find(arr, "test")); // 0
+        alert(find(arr, 2)); // 1
+        find(arr, 1.5); // 2
+
+        find(arr, 0); // -1
+    </script>
+</head>
+
+<body>
+
+</body>
+
 </html>
