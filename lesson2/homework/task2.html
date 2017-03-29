@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Task2</title>
+    <script>
+        function strCount(obj) {
+            var counter = 0;
+            for (key in obj) {
+                if ("string" === typeof obj[key]) {
+                    counter++
+                } else if ("object" === typeof obj[key]) {
+                    for (var property in obj[key]) {
+                        if ("string" === typeof obj[key][property]) {
+                            counter++;
+                        }
+                    }
+                }
+            }
+            return counter;
+        }
+        var myObj = {
+            first: "1",
+            second: "2",
+            third: false,
+            fourth: ["anytime", 2, 3, 4],
+            fifth: null
+        };
+        console.log(strCount(myObj));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Task2</title>
+    <script>
+        function summator(one) {
+          var one;
+          return function firstSummator(two) {
+            var result = one + two;
+            return result;
+          }
+        }
+        console.log(summator(3)(4))
+        console.log(summator(5)(9))
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
