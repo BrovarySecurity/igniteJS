@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Task1</title>
+    <script>
+    //1 способ:
+        function counter() {
+            counter.currentCount = 1;
+            console.log(counter.currentCount);
+            return {
+                countCall: function() {
+                    return counter.currentCount++;
+                }
+            }
+        }
+        var countFunction = counter();
+        console.log(countFunction.countCall());
+        console.log(countFunction.countCall());
+        console.log(countFunction.countCall());
+        console.log(countFunction.countCall());
+        //2 способ
+        // function createCounter() {
+        //     numberOfCalls = 0;
+        //     return function() {
+        //         return ++numberOfCalls;
+        //     }
+        // }
+        // var fn = createCounter();
+        // fn();
+        // fn();
+        // fn();
+        // fn();
+        //
+        // document.write('Количество вызовов функции: ' + numberOfCalls);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

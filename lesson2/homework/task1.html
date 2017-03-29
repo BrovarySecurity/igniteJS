@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Task1</title>
+    <script>
+        function number() {
+            var res = 0;
+            return function(num) {
+                return res += num;
+            };
+        }
+        var sum = number();
+        console.log(sum(3));
+        console.log(sum(5));
+        console.log(sum(228));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

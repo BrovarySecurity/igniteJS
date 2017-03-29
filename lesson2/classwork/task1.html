@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Task1</title>
+    <script>
+    var value = 0; //объявили переменную value и присвоили ей 0;
+    function f() {
+      if (1) { // 1 всегда true
+        value = true; // поскольку value без var, то она передаётся в window, то есть перезапишется и 0 изменится на true
+      } else {
+        var value = false; //никогда не будет выполнено, поскольку 1 - true и если убрать var - ничего не изменится
+      }
+      alert( value );
+    }
+    f(); //увидим true
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
