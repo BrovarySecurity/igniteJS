@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+        function runString(arg, obj) {
+            return this.obj.func(arg);
+        }
+        var arg = 9;
+        obj = {
+            param: "smth",
+            func: function(num) {
+                return Math.sqrt(num);
+            }
+        };
+        console.log(runString(arg, obj));
+
+        // function runString(arg, obj) {
+        //   return obj.func
+        // }
+        // var obj = {
+        //   param: 'num',
+        //   func: function () {
+        //     return Math.sqrt(num)
+        //   }
+        // }
+        // runString(arg, obj)
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

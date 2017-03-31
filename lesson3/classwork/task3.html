@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+        function Summator() {
+
+            this.sum = function(a, b) {
+                return a + b;
+            };
+
+            this.run = function() {
+                var a = +prompt('Введите первое число', 0);
+                var b = +prompt('Введите второе число', 0);
+                alert("sum=" + this.sum(a, b));
+            };
+        }
+
+        new Summator().run();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

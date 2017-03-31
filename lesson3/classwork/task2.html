@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+        function Calculator () {
+          this.read = function () {
+            var a = +prompt('Введите первое значение', 0);
+            var b = +prompt('Введите второе значение', 0);
+            return this.a = a, this.b = b;
+          };
+          this.sum = function () {
+            return this.a + this.b;
+          };
+          this.mul = function () {
+            return this.a * this.b;
+          };
+        };
+        var calculator = new Calculator();
+        calculator.read();
+
+        alert("Сумма=" + calculator.sum());
+        alert("Произведение=" + calculator.mul());
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
