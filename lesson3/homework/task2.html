@@ -6,7 +6,7 @@
     <title></title>
     <script>
         function runString(arg, obj) {
-            return this.obj.func(arg);
+            return obj.func(arg);
         }
         var arg = 9;
         obj = {
@@ -16,17 +16,6 @@
             }
         };
         console.log(runString(arg, obj));
-
-        // function runString(arg, obj) {
-        //   return obj.func
-        // }
-        // var obj = {
-        //   param: 'num',
-        //   func: function () {
-        //     return Math.sqrt(num)
-        //   }
-        // }
-        // runString(arg, obj)
     </script>
 </head>
 
