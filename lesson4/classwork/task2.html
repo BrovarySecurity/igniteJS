@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+        function bind(func, context) {
+            return function() {
+                return func.apply(context, arguments);
+            };
+        }
+        var user = {
+            firstName: "Вася",
+            sayHi: function() {
+                alert(this.firstName);
+            }
+        };
+
+        var g = user.sayHi.bind(user); // чере метод bind
+        var f = bind(user.sayHi, user);
+
+        g();
+        f();
+        // function bind(func, context) {
+        //     return function() {
+        //         return func.apply(context, arguments);
+        //     };
+        // }
+        //
+        // var user = {
+        //     firstName: "Вася",
+        //     sayHi: function() {
+        //         alert(this.firstName);
+        //     }
+        // };
+        //
+        // var f = bind(user.sayHi, user);
+        // f();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title></title>
     <script>
-    
+        function sumArgs() {
+            return [].reduce.call(arguments, function(a, b) {
+                return a + b;
+            });
+        }
 
+        alert(sumArgs(4, 5, 6)); // 15
     </script>
-  </head>
-  <body>
+</head>
 
-  </body>
+<body>
+
+</body>
+
 </html>
