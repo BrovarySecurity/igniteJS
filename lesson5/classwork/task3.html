@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+        function getType(arg) {
+            try {
+                if (arguments.length > 1) {
+                    throw new Error("Only one arg!");
+                }
+                return typeof arg;
+            } catch (e) {
+                return 'error: ' + e.message;
+            }
+        }
+    
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

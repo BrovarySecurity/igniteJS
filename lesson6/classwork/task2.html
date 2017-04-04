@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Task1</title>
+    <script>
+    </script>
+</head>
+
+<body>
+
+    <div id="widget" data-widget-name="menu">Выберите жанр</div>
+
+    <script>
+        var myDiv = document.getElementsByTagName('div');
+        var dataWidget = myDiv[0].getAttribute("data-widget-name");
+        console.log(dataWidget);
+    </script>
+</body>
+
+</html>

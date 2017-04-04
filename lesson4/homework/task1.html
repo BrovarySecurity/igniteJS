@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>task1</title>
+    <script>
+        var obj = {
+            name: "Вася"
+        }
+
+        function f() {
+            alert(this.name);
+        };
+
+        function myCall() {
+            this.apply([].shift.apply(arguments, arguments));
+        };
+
+
+        Function.prototype.call = myCall;
+        f.call(obj);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

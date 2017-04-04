@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>task1</title>
+    <script>
+        function cal() { 
+            var input = prompt("Выражение", "1+1");
+            try {
+                var a = eval(input);
+                if (isNaN(a) || a === undefined) {
+                    throw new Error("NaN or NULL");
+                }
+                alert(a);
+            } catch (e) {
+                alert("Error, " + e.message);
+            }
+
+        };
+
+        cal();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

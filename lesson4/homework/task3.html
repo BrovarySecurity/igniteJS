@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>task</title>
+    <script>
+        function work(a) {
+
+            return a;
+        }
+
+        function makeLogging(f, log) {
+            return function(a) {
+                log.push(a);
+                return f.call(this, a);
+            }
+        }
+
+        var log = [];
+        work = makeLogging(work, log);
+
+        work(1); // 1, добавлено в log
+        work(5); // 5, добавлено в log
+
+        for (var i = 0; i < log.length; i++) {
+            alert('Лог:' + log[i]); // "Лог:1", затем "Лог:5"
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

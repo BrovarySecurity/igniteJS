@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>task1</title>
+    <script>
+        function timer(arg) {
+            var counter = arg;
+
+            var myCounter = setInterval(function() {
+
+                console.log(counter);
+                if (counter == 0) {
+                    clearInterval(myCounter);
+                    console.log("timer is over");
+                }
+                counter--;
+
+            }, 1000);
+        }
+
+        console.log(timer(10));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
