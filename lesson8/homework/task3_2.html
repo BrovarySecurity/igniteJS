@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<!-- ###Задача 3.
+
+Создайте страницу-калькулятор.
+Разместите на странице два поля ввода и кнопки для арифметических операций над
+данными введенными в поля ввода. Реализуйте данную страницу двумя
+способами – с использованием модели DOM Level 0 (через атрибуты) и DOM Level 2.  -->
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        .group {
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="group">
+        <label for="first">A</label>
+        <input type="text" id="first">
+    </div>
+
+    <div class="group">
+        <label for="second">B</label>
+        <input type="text" id="second">
+    </div>
+
+    <div class="group">
+        <label for="result">Result</label>
+        <input type="text" id="result" readonly>
+    </div>
+
+    <div class="group">
+        <button id="sum">+</button>
+        <button id="sub">-</button>
+        <button id="mul">x</button>
+        <button id="div">/</button>
+    </div>
+    <script>
+        sum.addEventListener('click', function() {
+            result.value = +first.value + +second.value;
+        }, false);
+        sub.addEventListener('click', function() {
+            result.value = first.value - second.value;
+        }, false)
+        mul.addEventListener('click', function() {
+            result.value = first.value * second.value;
+        }, false)
+        div.addEventListener('click', function() {
+            result.value = first.value / second.value;
+        }, false)
+    </script>
+</body>
+
+</html>

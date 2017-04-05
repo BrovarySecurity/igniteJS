@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<!-- 
+###Задача 1.
+Сделайте список, элементы которого можно выделять кликом.
+Используйте для решения данной задачи свойство e.target. -->
+<head>
+    <meta charset="utf-8">
+    <style>
+        li {
+            cursor: pointer;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <ol>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+    </ol>
+    <script>
+        var list = document.getElementsByTagName('ol')[0];
+        list.onclick = function(e) {
+            for (var i = 0; i < list.children.length; i++) {
+                list.children[i].style.backgroundColor = 'transparent';
+            }
+            if (e.target.tagName != 'OL') {
+                e.target.style.backgroundColor = 'lightseagreen';
+            }
+        }
+    </script>
+</body>
+
+</html>

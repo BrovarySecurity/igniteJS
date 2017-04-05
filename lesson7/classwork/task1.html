@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Task1</title>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+    </div>
+    <p class="newp">texttexttext</p>
+    <div class="wrapper">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+    <p class="newp">texttexttext</p>
+    <script>
+        var mySpan = document.createElement('span');
+        mySpan.innerHTML = '<strong>Text for task</strong>';
+        var myArray = ['beforeBegin', 'afterBegin', 'beforeEnd', 'afterEnd'];
+        var myDiv = document.body.children[2];
+        var counter = 0;
+
+        function moveMySpan() {
+            myDiv.insertAdjacentElement(myArray[counter++], mySpan);
+            if (counter > myArray.length - 1) {
+                counter = 0;
+            }
+        }
+        var timer = setInterval(moveMySpan, 400);
+    </script>
+</body>
+
+</html>

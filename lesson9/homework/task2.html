@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<!-- ###Задача 2.
+Создайте круг красного цвета с надписью "Скидка".
+Когда курсор пользователя будет приближаться к ней,
+"Скидка" должна от него "убегать", не давая пользователю нажать на красный круг.
+Если круг будет выйдет за одну из сторон экрана, то он должен,
+появится с противоположной стороны. -->
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        #ball {
+            background-color: red;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+        }
+
+        #outerBall {
+            border-radius: 50%;
+            padding: 10px;
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outerBall" style="left:0; top:0">
+        <div id="ball">СКИДКА</div>
+    </div>
+    <script>
+        outerBall.onmousemove = function(e) {
+                //Расстояние курсора от центра круга по X и по Y
+                var relYPos = parseInt(outerBall.style.top) + (outerBall.offsetHeight / 2) - e.pageY;
+                var relXPos = parseInt(outerBall.style.left) + (outerBall.offsetWidth / 2) - e.pageX;
+                if (relYPos < 0 && Math.abs(relYPos) > 20) {
+                    outerBall.style.top = e.pageY - outerBall.offsetHeight + "px";
+                }
+                if (relYPos > 0 && Math.abs(relYPos) > 20) {
+                    outerBall.style.top = e.pageY + "px";
+                }
+                if (relXPos < 0 && Math.abs(relXPos) > 20) {
+                    outerBall.style.left = e.pageX - outerBall.offsetWidth + "px";
+                }
+                if (relXPos > 0 && Math.abs(relXPos) > 20) {
+                    outerBall.style.left = e.pageX + "px";
+                }
+                if (parseInt(outerBall.style.top) <= -outerBall.offsetHeight + 15) {
+                    outerBall.style.top = document.documentElement.clientHeight - outerBall.offsetHeight + "px";
+                }
+                if (parseInt(outerBall.style.left) <= -outerBall.offsetWidth + 15) {
+                    outerBall.style.left = document.documentElement.clientWidth - outerBall.offsetWidth + "px";
+                }
+                if (parseInt(outerBall.style.left) >= document.documentElement.clientWidth - 15) {
+                    outerBall.style.left = '0px';
+                }
+                if (parseInt(outerBall.style.top) >= document.documentElement.clientHeight - 15) {
+                    outerBall.style.top = '0px';
+                }
+            }
+            //проверка удается ли нажать
+        ball.onclick = function() {
+            alert('fail');
+        }
+    </script>
+</body>
+
+</html>

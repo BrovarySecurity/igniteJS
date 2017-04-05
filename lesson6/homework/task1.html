@@ -47,11 +47,11 @@
     <div class="result"></div>
     <script>
         var result = document.getElementById('result');
-        var lis = document.querySelectorAll('li');
-        for (var i = 0; i < lis.length; i++) {
-            var title = lis[i].firstChild.textContent;
-            var nesting = lis[i].querySelectorAll('li').length;
-            console.log(title + ':' + nesting)                
+        var myLi = document.getElementsByTagName('li');
+        for (var i = 0; i < myLi.length; i++) {
+            var liText = myLi[i].firstChild.textContent;
+            var liCount = myLi[i].querySelectorAll('li').length;
+            console.log(liText + ' ' + liCount)
         }
     </script>
 </body>

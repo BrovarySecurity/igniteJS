@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+    </style>
+</head>
+<body>
+    <input id="a" type="text"/>
+    <input id="b" type="text"/>
+    <button>Submit</button>
+    <div></div>
+    <script>
+        var btn = document.getElementsByTagName('button')[0];
+        btn.onclick = function () {
+            var valA = document.getElementById('a').value;
+            var valB = document.getElementById('b').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', "./CalcHandler.ashx");
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send('a=' + valA + '&b=' + valB);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    document.getElementsByTagName('div')[0].innerHTML = xhr.responseText;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+    </style>
+</head>
+<body>
+    <button>Load content</button>
+    <script>
+        btn = document.getElementsByTagName('button')[0];
+        btn.onclick = function() {
+            var xhr1 = new XMLHttpRequest();
+            var xhr2 = new XMLHttpRequest();
+            xhr1.open("GET", "./page1.html");
+            xhr2.open("GET", "./page2.html");
+            
+            xhr1.send();
+            xhr2.send();
+            
+            xhr1.timeout = 20000;
+            xhr2.timeout = 20000;
+
+            xhr1.ontimeout = function () {
+                alert( 'Извините, запрос превысил максимальное время' );
+            }
+
+            xhr2.ontimeout = function () {
+                alert( 'Извините, запрос превысил максимальное время' );
+            }
+
+            xhr1.onreadystatechange = function() {
+                if (xhr1.readyState == 4) {
+                    document.body.innerHTML += xhr1.responseText;
+                }
+            }
+
+            xhr2.onreadystatechange = function() {
+                if (xhr2.readyState == 4) {
+                    document.body.innerHTML += xhr2.responseText;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

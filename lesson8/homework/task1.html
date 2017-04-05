@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<!-- ###Задача 1.
+
+Создайте регистрационную форму:  логин, пароль, телефон и кнопка "Отправить".
+По нажатию на кнопку "Отправить", проверьте корректность ввода данных с
+помощью JavaScript.
+1) Логин - не должен содержать цифры.
+2) Пароль - не дожен содержать знак $.
+3) Телефон - должен содержать только цифры.
+
+Закрасьте фон поля ввода в красный цвет, если были введены неправильные данные.
+
+Используйте для решение данной задачи методы для работы со
+строками или регулярные выражения:
+[link](https://learn.javascript.ru/regexp-introduction)  -->
+<head>
+    <meta charset="utf-8">
+    <style>
+        .group {
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="#" type="post">
+        <div class="group">
+            <label for="login">Логин</label>
+            <input type="text" id="login">
+        </div>
+        <div class="group">
+            <label for="password">Пароль</label>
+            <input type="text" id="password">
+        </div>
+        <div class="group">
+            <label for="telephone">Телефон</label>
+            <input type="text" id="telephone">
+        </div>
+        <div class="group">
+            <button type="submit">Отправить</button>
+        </div>
+    </form>
+    <script>
+        document.forms[0].addEventListener("submit", function(e) {
+            login.style.backgroundColor = 'white';
+            password.style.backgroundColor = 'white';
+            telephone.style.backgroundColor = 'white';
+            if (/\d/.test(login.value)) {
+                login.style.backgroundColor = 'red';
+                e.preventDefault();
+            }
+            if (/\$/.test(password.value)) {
+                password.style.backgroundColor = 'red';
+                e.preventDefault();
+            }
+            if (!/^\d+$/.test(telephone.value)) {
+                telephone.style.backgroundColor = 'red';
+                e.preventDefault();
+            }
+        }, false)
+    </script>
+</body>
+
+</html>

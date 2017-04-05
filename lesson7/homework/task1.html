@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>task1</title>
+    <meta charset="utf-8">
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+        }
+
+        #red {
+            background-color: red;
+        }
+
+        #blue {
+            background-color: blue;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div id="red"></div>
+    <div id="blue"></div>
+    <div id="green"></div>
+
+    <script>
+        function move() {
+            var Height = document.documentElement.clientHeight;
+            var Width = document.documentElement.clientWidth;
+            function pull(target) {
+                target.style.right = Math.random() * Width + "px";
+                target.style.top = Math.random() * Height + "px";
+            }
+            setInterval(function () {
+                pull(red);
+                pull(blue);
+                pull(green);
+            }, 1000)
+        }
+        window.onload = move;
+    </script>
+
+</body>
+
+</html>

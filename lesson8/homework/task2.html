@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<!-- ###Задача 2.
+
+При наведении мыши на элемент, на нём возникает событие mouseover,
+при удалении мыши с элемента – событие mouseout.
+Зная это, напишите JS-код, который будет делать так, что при наведении
+на элемент, если у него есть атрибут data-tooltip – над ним будет показываться
+подсказка с содержимым этого атрибута.
+Например, две кнопки:
+```
+<button data-tooltip="подсказка длиннее, чем элемент">Короткая кнопка</button>
+<button data-tooltip="HTML<br>подсказка">Ещё кнопка</button>
+```  -->
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        .tooltip {
+            background-color: white;
+            border: 1px solid gray;
+            border-radius: 4px;
+            padding: 3px;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="padding: 50px;">
+        <button data-tooltip="подсказка длиннее, чем элемент">Короткая кнопка</button>
+        <button data-tooltip="HTML<br>подсказка">Ещё кнопка</button>
+    </div>
+    <script>
+        var btns = document.getElementsByTagName('button');
+        btns[0].onmouseover = function(e) {
+            mouseOverHandler(e)
+        };
+        btns[1].onmouseover = function(e) {
+            mouseOverHandler(e)
+        };
+        btns[0].onmouseout = function(e) {
+            mouseOutHandler(e)
+        };
+        btns[1].onmouseout = function(e) {
+            mouseOutHandler(e)
+        };
+
+        function mouseOverHandler(e) {
+            if (e.target.dataset.tooltip) {
+                var tip = document.createElement('div');
+                e.target.appendChild(tip);
+                tip.innerHTML = e.target.dataset.tooltip;
+                tip.className = "tooltip";
+                tip.style.top = e.target.getBoundingClientRect().top - tip.offsetHeight - 5 + "px"; //5 чтобы подсказка не лежала вплотную на кнопке
+                tip.style.left = e.target.getBoundingClientRect().left + "px";
+            }
+        }
+
+        function mouseOutHandler(e) {
+            if (e.target.dataset.tooltip) {
+                e.target.removeChild(e.target.children[0]);
+            }
+        }
+    </script>
+</body>
+
+</html>

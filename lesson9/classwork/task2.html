@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<!-- ###Задача 2.
+
+Создайте кнопку навигации, которая помогает при прокрутке страницы.
+Работать должна следующим образом:
+* Пока страница промотана меньше чем на высоту экрана вниз – кнопка не видна.
+* При промотке страницы вниз больше, чем на высоту экрана, появляется кнопка
+«стрелка вверх».
+* При нажатии на нее страница прыгает вверх, но не только. Дополнительно,
+кнопка меняется на «стрелка вниз» и при клике возвратит на старое место.
+Если же в этом состоянии посетитель сам прокрутит вниз больше, чем один экран,
+то она вновь изменится на «стрелка вверх».
+Должен получиться удобный навигационный помощник. -->
+<head>
+    <meta charset="utf-8">
+    <style>
+        #scrollBtn {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 50px;
+        }
+        body {
+            height: 2000px;
+            background: linear-gradient(to bottom, white, black)
+        }
+    </style>
+</head>
+
+<body>
+    <div style="height: 100vh; background-color: lightgreen;">
+        <button id="scrollBtn" style="display: none;"></button>
+        <script>
+            var lastPos;
+            var up;
+            document.onscroll = function() {
+                    if (window.pageYOffset >= document.documentElement.clientHeight) {
+                        scrollBtn.style.display = "block";
+                        up = true;
+                        scrollBtn.innerHTML = "&#128314;";
+                    } else {
+                        up = false;
+                        scrollBtn.innerHTML = "&#128315;";
+                        if (!lastPos) { scrollBtn.style.display = "none"; }
+                    }
+            }
+            scrollBtn.onclick = function() {
+                if (up) {
+                    lastPos = window.pageYOffset;
+                    window.scrollTo(0, 0);
+                } else {
+                    window.scrollTo(0, lastPos);
+                }
+            }
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>task2</title>
+    <meta charset="utf-8">
+    <style>
+        #anchor {
+            margin: 100px;
+            background: green;
+            color: #000;
+            padding: 100px;
+        }
+
+        .note {
+            position: absolute;
+            background-color: blue;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="anchor">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+
+    <script>
+        function positionAt(anchor, position, elem) {
+            var anch = anchor.getBoundingClientRect();
+            switch (position) {
+                case "top":
+                    elem.style.left = anch.left + "px";
+                    elem.style.top = anch.top - elem.offsetHeight + "px";
+                    break;
+                case "bottom":
+                    elem.style.left = anch.left + "px";
+                    elem.style.top = anch.bottom + "px";
+                    break;
+                case "left":
+                    elem.style.left = anch.left - elem.offsetWidth + "px";
+                    elem.style.top = anch.top + "px";
+                    break;
+                case "right":
+                    elem.style.left = anch.right + "px";
+                    elem.style.top = anch.top + "px";
+                    break;
+            }
+        }
+
+        function showNote(anchor, position, html) {
+            var note = document.createElement("div");
+            note.className = "note";
+            note.innerHTML = html;
+            document.body.appendChild(note);
+            positionAt(anchor, position, note);
+        }
+
+        var anch = document.getElementById("anchor");
+
+        showNote(anch, "top", "TOP");
+        showNote(anch, "right", "RIGHT");
+        showNote(anch, "bottom", "BOTTOM");
+        showNote(anch, "left", "LEFT");
+    </script>
+
+</body>
+
+</html>

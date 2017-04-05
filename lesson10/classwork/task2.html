@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<!-- ###Задача 2.
+
+Создайте код, который загрузит файл phones.json и
+выведет все названия телефонов из него в виде списка.
+(файлы для задачи находятся в папке task_phone);  -->
+
+<head>
+    <meta charset="utf-8">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <button>Get List</button>
+    <script>
+        var btn = document.getElementsByTagName('button')[0];
+        btn.onclick = function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', './task_phone/phones.json');
+            xhr.send();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        var phones = JSON.parse(xhr.responseText);
+                        var list = document.createElement('ul');
+                        document.body.appendChild(list);
+                        for (var i = 0; i < phones.length; i++) {
+                            var item = document.createElement('li');
+                            item.innerText = phones[i].name;
+                            list.appendChild(item);
+                        }
+                    } else {
+                        alert('Ошибка ' + xhr.status + ': ' + xhr.statusText);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

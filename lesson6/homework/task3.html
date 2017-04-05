@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+
+    <script>
+        (function() {
+
+            // проверяем поддержку
+            if (!Element.prototype.closest) {
+
+                // реализуем
+                Element.prototype.closest = function(css) {
+                    var node = this;
+
+                    while (node) {
+                        if (node.matches(css)) return node;
+                        else node = node.parentElement;
+                    }
+                    return null;
+                };
+            }
+
+        })();
+    </script>
+</body>
+
+</html>
