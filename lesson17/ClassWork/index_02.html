@@ -1,0 +1,57 @@
+<!--
+
+###Задача 2
+Создайте директиву, которая создает форму и добавляет ее на страницу. В форме такие поля:
+Username, login, password, email.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>ClassWork #2</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller('mainCtrl', function ($scope) {
+
+            $scope.fields = [
+                {
+                    label: "Username",
+                    type: "text"
+                },
+                {
+                    label: "Login",
+                    type: "text"
+                },
+                {
+                    label: "E-mail",
+                    type: "email"
+                },
+                {
+                    label: "Password",
+                    type: "password"
+                }];
+        })
+        app.directive('regForm', function () {
+            return {
+                link: function (scope, element, attributes) {},
+                restrict: "A",
+                templateUrl: 'data/form_01.html'
+            };
+        });
+    </script>
+</head>
+
+<body>
+    <div class="ui container" ng-controller="mainCtrl">
+        <h1>ClassWork #2</h1>
+        <div reg-form></div>
+    </div>
+</body>
+
+</html>

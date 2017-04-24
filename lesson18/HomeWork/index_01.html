@@ -1,0 +1,84 @@
+<!--
+
+###Задача 1
+Есть массив items:
+```
+[
+                { name: "Table", price: 44.10 },
+                { name: "Chair", price: 21.20 },
+                { name: "Pillow", price: 12.20 },
+                { name: "Picture", price: 112.70 },
+                { name: "Lamp", price: 28.31 }
+            ];
+```
+Создайте две директивы. Первая создает панель меню с элементами, взятыми из свойства name массива items. Вторая директива реализует следующее:
+* при клике по элементу на панели меню, пользователю показывается соответственный контент, взятый из свойства price массива items.
+Директивы используют общий контроллер.
+
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>HomeWork #1</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var myApp = angular.module('myApp', [])
+            .controller('mainCtrl', function ($scope) {
+                $scope.items = [
+                    {
+                        name: "Table",
+                        price: 44.10
+                    },
+                    {
+                        name: "Chair",
+                        price: 21.20
+                    },
+                    {
+                        name: "Pillow",
+                        price: 12.20
+                    },
+                    {
+                        name: "Picture",
+                        price: 112.70
+                    },
+                    {
+                        name: "Lamp",
+                        price: 28.31
+                    }];
+            })
+            .directive('firstDir', function () {
+                return {
+                    restrict: 'A',
+                    replace: true,
+                    templateUrl: 'data/data_01.html',
+                    controller: 'mainCtrl'
+                };
+            })
+            .directive('secondDir', function () {
+                return {
+                    restrict: 'A',
+                    require: '^firstDir',
+                    controller: 'mainCtrl',
+                    link: function (scope, elem, attrs) {
+                        scope.getPrice = function (index) {
+                            scope.price = scope.items[index].price;
+                        };
+                    }
+                };
+            });
+    </script>
+</head>
+
+<body>
+    <div class="ui container">
+        <h1>HomeWork #1</h1>
+        <div first-dir></div>
+    </div>
+</body>
+
+</html>

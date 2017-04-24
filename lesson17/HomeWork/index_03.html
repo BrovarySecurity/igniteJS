@@ -1,0 +1,61 @@
+<!--
+
+###Задача 3
+Создайте директиву для генерации меню. В качестве источника данных директива должна использовать массив объектов одно из свойств объекта должен использоваться как текст элемента меню, второе свойство используется для определения адреса перехода при клике по меню. Имена свойств должны задаваться
+
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>HomeWork #3</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var app = angular.module('myApp', []);
+
+        app.controller('mainCtrl', ['$scope', function ($scope) {
+            $scope.items = [
+                {
+                    name: 'Home',
+                    href: '#/'
+                },
+                {
+                    name: 'Category',
+                    href: '#/category'
+                },
+                {
+                    name: 'About',
+                    href: '#/about'
+                },
+                {
+                    name: 'Contact',
+                    href: '#/contact'
+                }
+			];
+		}]);
+
+        app.directive('myNav', function () {
+            return {
+                restrict: 'A',
+                scope: {
+                    arr: '=myNav'
+                },
+                template: '<div class="item" ng-repeat="item in arr"><a href="{{item.href}}">{{item.name}}</a></div>'
+            };
+        });
+    </script>
+</head>
+
+<body>
+    <div class="ui container" ng-controller="mainCtrl">
+        <h1>HomeWork #3</h1>
+        <div class="ui menu" my-nav="items"></div>
+    </div>
+</body>
+
+</html>

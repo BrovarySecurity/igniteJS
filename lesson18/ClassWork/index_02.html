@@ -1,0 +1,66 @@
+<!--
+
+### Задача 2
+Добавьте в код предыдущей задачи еще одну директиву, которая будет выводить значение переменной счетчика в консоль. Организуйте код так, чтобы обе директивы использовали один и тот же контроллер. Используйте свойство require.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>ClassWork #2</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var app = angular.module('myApp', [])
+
+        .controller('mainCtrl', function ($scope, $interval) {
+
+            $scope.counter = 0;
+
+            $scope.startCounter = function () {
+                $interval(function () {
+                    $scope.counter++;
+                }, 1000);
+            }
+
+            $scope.showCounter = function () {
+                $interval(function () {
+                    console.log($scope.counter);
+                }, 1000);
+            };
+        })
+
+        .directive('firstDir', function () {
+            return {
+                restrict: 'E',
+                scope: true,
+                templateUrl: 'data/data_01.html',
+                controller: 'mainCtrl'
+            }
+
+        })
+
+        .directive('secondDir', function () {
+            return {
+                restrict: 'A',
+                require: 'firstDir',
+                link: function (scope, elem, attrs, firstDirCtrl) {
+                    scope.showCounter();
+                }
+            }
+
+        })
+    </script>
+</head>
+
+<body>
+    <div class="ui container">
+        <h1>ClassWork #2</h1>
+        <first-dir second-dir></first-dir>
+    </div>
+</body>
+
+</html>

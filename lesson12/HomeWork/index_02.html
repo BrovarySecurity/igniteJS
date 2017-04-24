@@ -1,0 +1,107 @@
+<!--
+
+###Задача2
+Создайте приложение с интерфейсом показанном в файле template.png. Файл находится в папке Task. При этом реализуйте возможность сохранять данные введенные пользователем на серверной стороне. Для реализации серверной стороны используйте deployed. Используйте для взаимодействия с сервером сервис $http.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>HomeWork #2</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var app = angular.module('myApp', [])
+            .controller('mainCtrl', function ($scope) {
+                $scope.options = [{
+                    display: 'Таблица',
+                    value: 'table'
+                }, {
+                    display: 'Список',
+                    value: 'list'
+                }];
+
+                $scope.items = [
+                    {
+                        name: "B Item",
+                        price: 10.9,
+                        category: "Category 1",
+                        count: 10,
+                        tax: 1.12,
+                        expiration: 10
+                    },
+                    {
+                        name: "A Item",
+                        price: 1.1,
+                        category: "Category 1",
+                        count: 8,
+                        tax: 0.55,
+                        expiration: 12
+                    },
+                    {
+                        name: "D Item",
+                        price: 2.6,
+                        category: "Category 2",
+                        count: 7,
+                        tax: 0.22,
+                        expiration: 5
+                    },
+                    {
+                        name: "C Item",
+                        price: 17.5,
+                        category: "Category 2",
+                        count: 33,
+                        tax: 2.77,
+                        expiration: 10
+                    }];
+
+                $scope.mode = $scope.options[0];
+
+            })
+    </script>
+</head>
+
+<body ng-controller="mainCtrl">
+    <div class="ui container">
+        <h1>HomeWork #2</h1>
+        <select class="ui fluid dropdown" ng-model=" mode " ng-options="item.display for item in options track by item.value "></select>
+        <br>
+        <div ng-switch on="mode.value ">
+            <div ng-switch-when="table ">
+                <table class="ui celled table ">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>Count</th>
+                            <th>Tax</th>
+                            <th>Expiration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in items ">
+                            <td>{{item.name}}</td>
+                            <td>{{item.price}}</td>
+                            <td>{{item.category}}</td>
+                            <td>{{item.count}}</td>
+                            <td>{{item.tax}}</td>
+                            <td>{{item.expiration}}</td>
+                        </tr>
+                        <tbody>
+                </table>
+            </div>
+            <div ng-switch-when="list ">
+                <ul class="ui list ">
+                    <li ng-repeat="item in items ">{{item.name}}:{{item.price}}:{{item.category}}:{{item.count}}:{{item.tax}}:{{item.expiration}}</li>
+                    <ul></ul>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

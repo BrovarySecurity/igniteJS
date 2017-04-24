@@ -1,0 +1,73 @@
+<!--
+
+###Задача 2
+Создайте две директивы. Первая создает список ul с произвольным количеством элементов. Вторая директива добавляет четным элементам списка CSS класс ‘red’ со следующим значением:
+```
+.red {
+color: red
+}
+```
+Обе директивы используются в качестве атрибутов и применяются к одному и тому же элементу. При решении задачи используйте приоритет директив.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>HomeWork #2</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <style>
+        .red {
+            color: red!important;
+        }
+    </style>
+    <script>
+        var app = angular.module('myApp', [])
+            .controller('mainCtrl', function ($scope) {
+                $scope.data = ['item1', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7', 'item8', 'item9', 'item10'];
+            })
+
+        app.directive('firstDir', function () {
+            return {
+                restrict: 'A',
+                priority: 0,
+                controller: 'mainCtrl',
+                link: function (scope, elem, attr) {
+                    var div = angular.element("<div class='ui bulleted list'>");
+                    for (var i = 0; i < scope.data.length; i++) {
+                        var a = angular.element("<a class='item'>").text(scope.data[i]);
+                        div.append(a);
+                    }
+                    elem.append(div);
+                }
+            };
+        })
+
+        app.directive('redDir', function () {
+            return {
+                restrict: 'A',
+                priority: 1,
+                link: function (scope, elem, attrs) {
+                    var items = angular.element(document).find("a");
+                    for (var i = 0; i < items.length; i++) {
+                        if (i % 2 != 0) {
+                            items[i].setAttribute("class", "item red");
+                        }
+                    }
+                }
+            };
+        });
+    </script>
+</head>
+
+<body>
+    <div class="ui container" ng-controller="mainCtrl">
+        <h1>HomeWork #2</h1>
+        <div first-dir red-dir></div>
+    </div>
+</body>
+
+</html>

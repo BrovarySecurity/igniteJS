@@ -1,0 +1,61 @@
+<!--
+
+###Задача 3
+
+Используйте сервис $http для получения данных из файла data.json, который находится в папке data. Отобразите полученные данные на странице в виде таблицы. Предусмотрите обработку ошибок в запросе (используя Promise).
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="toDo">
+
+<head>
+    <title>ClassWork #3</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var app = angular.module('toDo', []);
+        app.controller('ToDoCtrl', ['$scope', "$http", function ($scope, $http) {
+            $scope.dataReadyState = false;
+            $scope.click = function () {
+                $http({
+                    method: "GET",
+                    url: "data/data.json"
+                }).then(function successHandler(response) {
+                    $scope.items = response.data;
+                    $scope.dataReadyState = true;
+                }, function errorHandler(response) {
+                    alert("err" + response.statusText);
+                });
+            };
+        }]);
+    </script>
+</head>
+
+<body ng-controller="ToDoCtrl">
+    <div class="ui container">
+        <h1>ClassWork #3</h1>
+        <button ng-click="click()" class="ui button">Load</button>
+        <table class="ui celled table">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in items">
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

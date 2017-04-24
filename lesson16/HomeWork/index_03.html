@@ -1,0 +1,109 @@
+<!--
+
+###Задача 3
+Добавьте на страницу следующий функционал:
+* При клике по элементу списка на странице home, пользователь пеенаправляется на страницу contact по адресу ‘/contact + routeParams’, где routeParams – параметры маршрутизации, созданные с помощью сервиса $routeParams, представляющие собой значения свойств массива people для элемента, по которому кликнул пользователь.
+* Используйте данные, переданные через $routeParams, для автозаполнения формы на странице contact
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>HomeWork #3</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var people = [{
+                name: 'Vasya',
+                age: 20,
+                email: 'vasya@mail.ru',
+                employed: false
+            },
+            {
+                name: 'Masha',
+                age: 25,
+                email: 'm@m',
+                employed: true
+            },
+            {
+                name: 'Petya',
+                age: 27,
+                email: 'petya@stuff',
+                employed: true
+            },
+            {
+                name: 'John',
+                age: 36,
+                email: 'johnDoe@mail',
+                employed: true
+            },
+            {
+                name: 'Jane',
+                age: 28,
+                email: 'janeDoe@mail',
+                employed: false
+            }]
+
+        var app = angular.module("myApp", ["ngRoute"])
+
+        .config(function ($routeProvider, $locationProvider) {
+            $routeProvider
+                .when("/view1", {
+                    templateUrl: "data/home_03.html",
+                    controller: 'homeCtrl'
+                })
+                .when("/view2", {
+                    templateUrl: "data/contact.html"
+                })
+                .when("/view2/:name/:age/:email/:employed", {
+                    templateUrl: "data/contact.html",
+                    controller: 'contactCtrl'
+                })
+                .otherwise({
+                    redirectTo: "/"
+                });
+
+            $locationProvider.html5Mode({
+                enable: true,
+                requireBase: true
+            });
+
+        });
+
+        app.controller('homeCtrl', ['$scope', '$location', function ($scope, $location) {
+            $scope.people = people;
+            $scope.goContact = function (index) {
+                var paramStr = $scope.people[index].name + '/' + $scope.people[index].age + '/' + $scope.people[index].email + '/' + $scope.people[index].employed;
+                $location.path('/view2/' + paramStr);
+            }
+		}]);
+        app.controller('contactCtrl', ['$scope', '$routeParams', function ($scope, $routeParams) {
+            $scope.name     = $routeParams.name;
+            $scope.age      = $routeParams.age;
+            $scope.email    = $routeParams.email;
+            $scope.employed = $routeParams.employed === 'true' ? true : false;
+		}]);
+    </script>
+</head>
+
+<body>
+    <div class="ui container">
+        <h1>HomeWork #3</h1>
+        <div class="ui bulleted list">
+            <div class="item"><a href="#/view1">Home</a></div>
+            <div class="item"><a href="#/view2">Contact</a></div>
+        </div>
+        <div class="ui message">
+            <div class="header">
+                Result:
+            </div>
+            <p ng-view></p>
+        </div>
+    </div>
+</body>
+
+</html>

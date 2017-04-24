@@ -1,0 +1,7 @@
+<form class="ui form">
+    <div class="field" ng-repeat="field in fields">
+        <label>{{field.label}}</label>
+        <input type="{{field.type}}" placeholder="{{field.label}}" required>
+    </div>
+    <button class="ui button" type="submit">Submit</button>
+</form>

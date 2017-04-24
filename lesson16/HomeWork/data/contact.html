@@ -1,0 +1,23 @@
+<form class="ui form">
+    <div class="fields">
+        <div class="field">
+            <label>Username</label>
+            <input name="name" placeholder="Username" ng-model="name" type="text">
+        </div>
+        <div class="field">
+            <label>Age</label>
+            <input name="age" placeholder="Age" ng-model="age" type="text">
+        </div>
+        <div class="field">
+            <label>E-mail</label>
+            <input name="email" ng-model="email" placeholder="E-mail" type="email">
+        </div>
+    </div>
+    <div class="field">
+        <div class="ui checkbox">
+            <input name="employed" ng-model="employed" class="hidden" tabindex="0" type="checkbox">
+            <label>Employed</label>
+        </div>
+    </div>
+    <button class="ui button" type="submit">Submit</button>
+</form>

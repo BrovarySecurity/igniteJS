@@ -1,0 +1,49 @@
+<!--
+
+###Задача2
+
+Создайте сервис из пердыдущей задачи, используя метод провайдера.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="toDo">
+
+<head>
+    <title>ClassWork #2</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var app = new angular.module('toDo', []);
+        app.provider('myClick', function () {
+            var counter = 1;
+            return {
+                setCounterOffset: function (offset) {
+                    if (angular.isDefined(offset)) {
+                        counter = offset;
+                    }
+                },
+                $get: function () {
+                    return function () {
+                        console.log('#' + counter++);
+                    }
+                }
+            }
+        });
+        app.controller('mainCtrl', ['$scope', 'myClick', function ($scope, myClick) {
+            $scope.click = function () {
+                myClick();
+            };
+		}]);
+    </script>
+</head>
+
+<body ng-controller="mainCtrl">
+    <div class="ui container">
+        <h1>ClassWork #2</h1>
+        <button class="ui primary button" ng-click="click()">Add!</button>
+    </div>
+</body>
+
+</html>

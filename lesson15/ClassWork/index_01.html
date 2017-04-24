@@ -1,0 +1,47 @@
+<!--
+
+###Задача 1
+Создайте страницу с произвольным количеством блоков текста с заголовками. Создайте список заголовков вверху страницы. Используя сервис $anchorScroll, реализуйте навигацию на странице.При нажатии на заголовок в списке вверху страницы, страница должна быть автоматически прокручена до блока текста с соответствующим заголовком.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>ClassWork #1</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var myApp = angular.module('myApp', [])
+            .controller('MyAppCtrl', function ($scope, $location, $anchorScroll) {
+
+                $scope.list = [];
+                for (var i = 1; i < 15; i++) {
+                    $scope.list.push(i);
+                }
+                $scope.goTo = function (id) {
+                    $location.hash(id);
+                };
+            });
+    </script>
+</head>
+
+<body>
+    <div class="ui container" ng-controller="MyAppCtrl">
+        <h1>ClassWork #1</h1>
+        <div class="ui bulleted list" ng-repeat="item in list">
+            <a ng-click="goTo(item)" class="item">Header {{item}}</a>
+        </div>
+        <div id="{{item}}" ng-repeat="item in list">
+            <h2 class="ui header">Header {{item}}</h2>
+            <p>
+                Создайте страницу с произвольным количеством блоков текста с заголовками. Создайте список заголовков вверху страницы. Используя сервис $anchorScroll, реализуйте навигацию на странице.При нажатии на заголовок в списке вверху страницы, страница должна быть автоматически прокручена до блока текста с соответствующим заголовком.
+            </p>
+            <br><br>
+        </div>
+    </div>
+</body>
+
+</html>

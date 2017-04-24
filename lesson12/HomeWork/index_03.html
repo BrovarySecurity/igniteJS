@@ -1,0 +1,115 @@
+<!--
+
+    ###Задача 3
+    Реализуйте SPA приложение, в котором пользователю представляется пройти тест из 5 вопросов, в каждом вопросе по 4 варианта ответа. Вопросы должны выбираться с помощью radio-button и когда выбран, например, вопрос №1, то на странице должны появится варианты ответа только для этого вопроса. В конце тестирования отобразите результат теста. При решении данной задачи используйте директиву ng-switch.
+-->
+
+<!--
+    Что то намудрил, самому страшно =)
+-->
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>HomeWork #3</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var app = angular.module('myApp', [])
+            .controller('mainCtrl', function ($scope) {
+                $scope.items = [
+                    {
+                        question: "Question 1",
+                        answer: ["a", "б", "в", "г"]
+                        },
+                    {
+                        question: "Question 2",
+                        answer: ["q", "w", "e", "r"]
+                        },
+                    {
+                        question: "Question 3",
+                        answer: ["1", "2", "3", "4"]
+                        },
+                    {
+                        question: "Question 4",
+                        answer: ["1", "2", "3", "4"]
+                        },
+                    {
+                        question: "Question 5",
+                        answer: ["1", "2", "3", "4"]
+                        },
+
+                    ];
+                $scope.res = function (a, b) {
+                    switch (a) {
+                    case 0:
+                        $scope.res1 = $scope.items[a].answer[b];
+                        break;
+                    case 1:
+                        $scope.res2 = $scope.items[a].answer[b];
+                        break;
+                    case 2:
+                        $scope.res3 = $scope.items[a].answer[b];
+                        break;
+                    case 3:
+                        $scope.res4 = $scope.items[a].answer[b];
+                        break;
+                    case 4:
+                        $scope.res5 = $scope.items[a].answer[b];
+                        break;
+                    }
+                }
+            })
+    </script>
+</head>
+
+<body ng-controller="mainCtrl">
+    <div class="ui container">
+        <h1>HomeWork #3</h1>
+        <div ng-repeat="item in items" class="ui radio checkbox">
+            <input ng-model="$parent.number" value="{{$index}}" name="radio" type="radio">
+            <label>{{item.question}}</label>
+        </div>
+        <div ng-switch on="number">
+            <div ng-switch-when="0">
+                <div ng-repeat="item in items[0].answer" class="ui radio checkbox">
+                    <input ng-click="res(0, $index)" name="rad" type="radio">
+                    <label>{{item}}</label>
+                </div>
+            </div>
+            <div ng-switch-when="1">
+                <div ng-repeat="item in items[1].answer" class="ui radio checkbox">
+                    <input ng-click="res(1, $index)" name="rad" type="radio">
+                    <label>{{item}}</label>
+                </div>
+            </div>
+            <div ng-switch-when="2">
+                <div ng-repeat="item in items[2].answer" class="ui radio checkbox">
+                    <input ng-click="res(2, $index)" name="rad" type="radio">
+                    <label>{{item}}</label>
+                </div>
+            </div>
+            <div ng-switch-when="3">
+                <div ng-repeat="item in items[3].answer" class="ui radio checkbox">
+                    <input ng-click="res(3, $index)" name="rad" type="radio">
+                    <label>{{item}}</label>
+                </div>
+            </div>
+            <div ng-switch-when="4">
+                <div ng-repeat="item in items[4].answer" class="ui radio checkbox">
+                    <input ng-click="res(4, $index)" name="rad" type="radio">
+                    <label>{{item}}</label>
+                </div>
+            </div>
+        </div>
+        <br>Ответ 1:{{res1}}
+        <br>Ответ 2:{{res2}}
+        <br>Ответ 3:{{res3}}
+        <br>Ответ 4:{{res4}}
+        <br>Ответ 5:{{res5}}
+
+    </div>
+</body>
+
+</html>

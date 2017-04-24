@@ -1,0 +1,120 @@
+<!--
+
+###Задача2
+Добавьте в предыдущую задачу возможность пользователя редактировать задачи и сохранять результат после редактирования.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="toDo">
+
+<head>
+    <title>HomeWork #2</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        // Модель
+        var model = {
+            do: [{
+                    name: "Купить молоко",
+                    description: "Сходить на рынок и купить молока",
+                    date: "2/18/2015",
+                    completed: "Yes"
+                },
+                {
+                    name: "HTML, CSS",
+                    description: "Выучить",
+                    date: "4/18/2015",
+                    completed: "No"
+                }]
+        };
+
+        var toDo = angular.module("toDo", []);
+
+        toDo.controller("ToDoCtrl", function ($scope) {
+
+            $scope.data = model;
+
+            $scope.addNew = function () {
+                $scope.data.do.push({
+                    name: $scope.doName,
+                    description: $scope.doDescription,
+                    date: $scope.doDate,
+                    completed: $scope.doPassed ? "Yes" : "No"
+                });
+            }
+
+            $scope.edit = function (i) {
+                $scope.doName = $scope.data.do[i].name;
+                $scope.doDescription = $scope.data.do[i].description;
+                $scope.doDate = $scope.data.do[i].date;
+                $scope.doPassed = $scope.data.do[i].completed;
+
+                if ($scope.doPassed === "Yes") {
+                    $scope.doPassed = true;
+                } else {
+                    $scope.doPassed = false;
+                }
+
+                $scope.save = function () {
+                    $scope.data.do[i].name = $scope.doName
+                    $scope.data.do[i].description = $scope.doDescription
+                    $scope.data.do[i].date = $scope.doDate
+                    $scope.data.do[i].completed = $scope.doPassed ? "Yes" : "No";
+                }
+            }
+        });
+    </script>
+</head>
+
+<body ng-controller="ToDoCtrl">
+    <div class="ui container">
+        <h1>HomeWork #2</h1>
+        <table class="ui celled table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Completed</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="d in data.do">
+                    <td>{{d.name}}</td>
+                    <td>{{d.description}}</td>
+                    <td>{{d.date}}</td>
+                    <td>{{d.completed}}</td>
+                    <td><i ng-click="edit($index)" class="edit icon" style="cursor:pointer;"></i></td>
+
+                </tr>
+            </tbody>
+        </table>
+        <form class="ui form">
+            <div class="field">
+                <label>Name</label>
+                <input ng-model="doName" name="name" placeholder="Name" type="text">
+            </div>
+            <div class="field">
+                <label>Date</label>
+                <input ng-model="doDate" name="date" placeholder="18/08/2016" type="text">
+            </div>
+            <div class="field">
+                <label>Description</label>
+                <textarea ng-model="doDescription"></textarea>
+            </div>
+            <div class="field">
+                <div class="ui checkbox">
+                    <input ng-model="doPassed" name="example" type="checkbox">
+                    <label>Сompleted</label>
+                </div>
+            </div>
+            <button ng-click="addNew()" class="ui button" type="submit">Add</button>
+            <button ng-click="save()" class="ui button" type="submit">Save</button>
+        </form>
+    </div>
+</body>
+
+</html>

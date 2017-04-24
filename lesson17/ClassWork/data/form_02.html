@@ -1,0 +1,10 @@
+<!-- если ng-model="{{field.model}}" почему то перестает работать -->
+
+<form class="ui form" novalidate name="myForm">
+    <div class="field" ng-repeat="field in fields">
+        <label>{{field.label}}</label>
+        <input type="{{field.type}}" ng-pattern="{{field.pattern}}" ng-model="newUser.$index" placeholder="{{field.label}}" required>
+    </div>
+    <button class="ui button" ng-disabled="myForm.$invalid" ng-click="showMsg()" type="submit">Submit</button>
+    {{message}}
+</form>

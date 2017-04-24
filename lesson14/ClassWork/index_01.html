@@ -1,0 +1,41 @@
+<!--
+
+###Задача 1
+
+Создайте страницу с кнопкой. Разработвйте сервис, который будет считать количество кликов по кнопке и выводить его в консоль. Используйте фабричную функцию для создания сервиса.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="toDo">
+
+<head>
+    <title>ClassWork #1</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var app = new angular.module('toDo', []);
+        app.factory('myClick', function () {
+            var counter = 1;
+            return function () {
+                console.log('#' + counter++);
+                return;
+            }
+        });
+        app.controller('mainCtrl', ['$scope', 'myClick', function ($scope, myClick) {
+            $scope.click = function () {
+                myClick();
+            };
+		}]);
+    </script>
+</head>
+
+<body ng-controller="mainCtrl">
+    <div class="ui container">
+        <h1>ClassWork #1</h1>
+        <button class="ui primary button" ng-click="click()">Add!</button>
+    </div>
+</body>
+
+</html>

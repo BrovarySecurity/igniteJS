@@ -1,0 +1,39 @@
+<!--
+
+###Задача2
+Создайте страницу с полем ввода и кнопкой. При нажатии на кнопку содержимое поля ввода должно отображаться на странице.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="helloWorldApp">
+
+<head>
+    <title>ClassWork #2</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script>
+        // Модель
+        var model = "";
+
+        var helloWorldApp = angular.module("helloWorldApp", []);
+
+        helloWorldApp.controller("HelloWorldCtrl", function ($scope) {
+            $scope.message = model;
+
+            // Поведение / Behavior
+            $scope.clickHandler = function () {
+                $scope.message = $scope.text;
+            }
+        });
+    </script>
+</head>
+
+<body ng-controller="HelloWorldCtrl">
+    <h1>ClassWork #2</h1>
+    <input ng-model="text" />
+    <button ng-click="clickHandler()">Добавить</button>
+    <div>{{message}}</div>
+</body>
+
+</html>

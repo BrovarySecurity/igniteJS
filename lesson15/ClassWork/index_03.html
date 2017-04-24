@@ -1,0 +1,63 @@
+<!--
+
+###Задача 3
+Разработайте сервис, которой можно будет использовать для записи данных в cookie. Продемонстрируйте работу сервиса.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>ClassWork #3</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.8/angular-cookies.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var app = angular.module('myApp', ['ngCookies'])
+
+        function addCookie() {
+            return function (cookieStore, id, value) {
+                console.log(id);
+                console.log(value);
+                cookieStore.put(id, value);
+
+            };
+        }
+
+        app.service("myCookie", addCookie);
+
+        app.controller("mainCtrl", function ($scope, $cookieStore, myCookie) {
+
+            $scope.saveCookie = function () {
+                console.log("go");
+                myCookie($cookieStore, $scope.id, $scope.val);
+            };
+
+        })
+    </script>
+</head>
+
+<body ng-controller="mainCtrl">
+    <div class="ui container">
+        <h1>ClassWork #3</h1>
+        <div class="ui labeled input">
+            <div class="ui label">
+                id
+            </div>
+            <input ng-model="id" placeholder="id" type="text">
+        </div>
+        <div class="ui labeled input">
+            <div class="ui label">
+                value
+            </div>
+            <input ng-model="val" placeholder="value" type="text">
+        </div>
+        <button ng-click="saveCookie()" class="ui primary button">
+            Add
+        </button>
+    </div>
+</body>
+
+</html>

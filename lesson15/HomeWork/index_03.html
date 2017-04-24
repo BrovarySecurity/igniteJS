@@ -1,0 +1,71 @@
+<!--
+
+###Задача 3
+Разработайте приложение-секундомер. На странице должно быть 3 кнопки:
+* start – начать отсчет
+* stop – остановить отсчет
+* clear – сброс отсчета
+
+-->
+<!DOCTYPE html>
+<html ng-app="toDo">
+
+<head>
+    <title>ClassWork #3</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var app = new angular.module('toDo', []);
+
+        app.controller("mainCtrl", function ($scope, $interval, $filter) {
+
+            var time = 0,
+                stopTime;
+
+            $scope.i = "00:00:00.0";
+
+            $scope.timeFormated = $filter('date')(time, "HH:mm:ss.sss", "UTC").slice(0, -2);
+
+            $scope.start = function () {
+
+                if (angular.isDefined(stopTime)) {
+                    return;
+                }
+
+                stopTime = $interval(function () {
+                    time += 100;
+                    $scope.i = $filter('date')(time, "HH:mm:ss.sss", "UTC").slice(0, -2);
+
+                }, 100);
+            }
+
+            $scope.stop = function () {
+                $interval.cancel(stopTime);
+                stopTime = undefined;
+
+            }
+            $scope.reset = function () {
+                $scope.stop();
+                time = 0;
+                $scope.i = "00:00:00.0";
+
+            }
+
+
+        })
+    </script>
+</head>
+
+<body ng-controller="mainCtrl">
+    <div class="ui container">
+        <h1>ClassWork #3</h1>
+        <div>{{i}}</div>
+        <br>
+        <button class="ui primary button" ng-click="start()">Start!</button>
+        <button class="ui primary button" ng-click="stop()">Stop!</button>
+        <button class="ui primary button" ng-click="reset()">Reset!</button>
+    </div>
+</body>
+
+</html>

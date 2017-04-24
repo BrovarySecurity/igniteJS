@@ -1,0 +1,90 @@
+<!--
+
+    ###Задача 3
+    Создайте форму для регистрации нового пользователя. Форма должна содержать поля:
+    ФИО, email, телефон, пароль, подтверждение пароля. Реализуйте real-time валидацию пользовательского ввода.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>HomeWork #3</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <style>
+        form .ng-invalid.ng-dirty {
+            background-color: #fff6f6!important;
+            border-color: #e0b4b4!important;
+            box-shadow: none!important;
+            color: #9f3a38!important;
+        }
+    </style>
+    <script>
+        var app = angular.module('myApp', [])
+            .controller('mainCtrl', function ($scope) {
+
+                $scope.nameRegex = /^.{3,20}$/;
+                $scope.mailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]+$/;
+                $scope.phoneRegex = /^[0-9]*$/;
+                $scope.passRegex = /^.{6,20}$/;
+
+                $scope.showMsg = function () {
+                    $scope.message = 'Привет ' + $scope.newUser.name;
+                }
+                $scope.pass = function () {
+
+                    if ($scope.myForm.pass2.$viewValue != $scope.myForm.pass1.$viewValue) {
+
+                        $scope.myForm.$invalid = true;
+
+                        // почему форма валидна если мы ставим
+                        //$scope.myForm.pass2.$invalid = true;
+
+                        // как сделать что бы класс был ng-invalid и оно выделялось
+
+                    }
+                };
+
+            })
+    </script>
+</head>
+
+<body>
+    <div ng-controller="mainCtrl">
+        <div class="ui container">
+            <h1>HomeWork #3</h1>
+            <form class="ui form" novalidate name="myForm">
+                <div class="field">
+                    <label>ФИО</label>
+                    <input name="name" placeholder="ФИО" type="text" ng-model="newUser.name" ng-pattern="nameRegex" required>
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <input name="email" placeholder="Email" type="text" ng-pattern="mailRegex" ng-model="newUser.email" required>
+                </div>
+                <div class="field">
+                    <label>Teлефон</label>
+                    <input name="tel" placeholder="" type="tel" ng-pattern="phoneRegex" ng-model="newUser.tel" required>
+                </div>
+
+                <div class="field">
+                    <label>Пароль</label>
+                    <input name="pass1" placeholder="" type="password" ng-pattern="passRegex" ng-model="newUser.pass" ng-keyup="pass()" required>
+                </div>
+
+                <div class="field">
+                    <label>Подтверждение пароля</label>
+                    <input name="pass2" placeholder="" type="password" ng-pattern="passRegex" ng-model="newUser.pass2" ng-class="className" ng-keyup="pass()" required>
+                </div>
+
+                <button class="ui button" ng-disabled="myForm.$invalid" ng-click="showMsg()" type="submit">Submit</button>
+            </form>
+            {{message}}
+        </div>
+    </div>
+</body>
+
+</html>

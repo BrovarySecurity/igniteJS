@@ -1,0 +1,79 @@
+<!--
+
+###Задача 1
+Создайте приложение-калькулятор. В приложении должно быть два поля ввода и кнопки «+», «-», «*», «/». Реализуйте двунаправленную привязку таким образом, чтобы при нажатии на кнопки результат арифметических операций выводился на странице.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="toDo">
+
+<head>
+    <title>HomeWork #1</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var toDo = angular.module("toDo", []);
+
+        toDo.controller("ToDoCtrl", function ($scope) {
+
+            $scope.plus = function () {
+                $scope.result = +$scope.one + +$scope.two
+
+                if (!isFinite($scope.result)) {
+                    $scope.result = "Error"
+                }
+            }
+            $scope.minus = function () {
+                $scope.result = $scope.one - $scope.two
+
+                if (!isFinite($scope.result)) {
+                    $scope.result = "Error"
+                }
+            }
+            $scope.multiply = function () {
+                $scope.result = $scope.one * $scope.two
+
+                if (!isFinite($scope.result)) {
+                    $scope.result = "Error"
+                }
+            }
+            $scope.divide = function () {
+                $scope.result = $scope.one / $scope.two
+
+                if (!isFinite($scope.result)) {
+                    $scope.result = "Error"
+                }
+            }
+        });
+    </script>
+</head>
+
+<body ng-controller="ToDoCtrl">
+    <div class="ui container">
+        <h1>HomeWork #1</h1>
+        <div class="ui input">
+            <input ng-model="one" placeholder="0" type="text">
+        </div>
+        <button ng-click="plus()" class="ui button">
+            +
+        </button>
+        <button ng-click="minus()" class="ui button">
+            -
+        </button>
+        <button ng-click="multiply()" class="ui button">
+            *
+        </button>
+        <button ng-click="divide()" class="ui button">
+            /
+        </button>
+        <div class="ui input">
+            <input ng-model="two" placeholder="0" type="text">
+        </div>
+        = {{result}}
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!--
+
+###Задача1
+Создайте приложение, которое выводит на экран надпись 'Hello World!'.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="helloWorldApp">
+
+<head>
+    <title>ClassWork #1</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script>
+        // Модель
+        var model = "Hello world!";
+
+        var helloWorldApp = angular.module("helloWorldApp", []);
+
+        helloWorldApp.controller("HelloWorldCtrl", function ($scope) {
+            $scope.message = model;
+        });
+    </script>
+</head>
+
+<body ng-controller="HelloWorldCtrl">
+    <h1>ClassWork #1</h1>
+    <h2>{{message}}</h2>
+</body>
+
+</html>

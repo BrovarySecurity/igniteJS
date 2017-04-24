@@ -1,0 +1,41 @@
+<!--
+
+###Задача 1
+Создайте пользовательскую директиву, которой можно передать массив, а результатом её работы будет сгенерированный список.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>ClassWork #1</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("mainCtrl", ["$scope", function ($scope) {
+            $scope.items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        }]);
+        app.directive("arrayList", function () {
+            return {
+                restrict: 'A',
+                scope: {
+                    items: "=arrayList"
+                },
+                template: "<div class='ui bulleted list'><div ng-repeat='item in items track by $index'>Item {{item}}</div>"
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="ui container" ng-controller="mainCtrl">
+        <h1>ClassWork #1</h1>
+        <div array-list="items"></div>
+    </div>
+</body>
+
+</html>

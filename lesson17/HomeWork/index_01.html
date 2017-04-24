@@ -1,0 +1,100 @@
+<!--
+
+###Задача 1
+Создайте пользовательскую директиву, которой можно передать массив объектов, а результатом её работы будет сгенерированная таблица. Столбцы таблицы, будут соответствовать свойствам объекта. Используйте подход с link function и генерацию элементов с помощью jqLite.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>HomeWork #1</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        'use strict';
+        var app = angular.module('myApp', []);
+        app.controller('mainCtrl', ['$scope', function ($scope) {
+            $scope.people = [{
+                    name: 'Vasya',
+                    age: 20,
+                    email: 'vasya@mail.ru',
+                    employed: false
+                },
+                {
+                    name: 'Masha',
+                    age: 25,
+                    email: 'm@m',
+                    employed: true
+                },
+                {
+                    name: 'Petya',
+                    age: 27,
+                    email: 'petya@stuff',
+                    employed: true
+                },
+                {
+                    name: 'John',
+                    age: 36,
+                    email: 'johnDoe@mail',
+                    employed: true
+                },
+                {
+                    name: 'Jane',
+                    age: 28,
+                    email: 'janeDoe@mail',
+                    employed: false
+                }]
+		}]);
+
+        app.directive('myTable', function () {
+            return {
+                restrict: 'A',
+                scope: {
+                    arr: '=myTable'
+                },
+                link: function (scope, element, attr) {
+                    var arr = scope.arr;
+
+                    if (angular.isUndefined(arr)) {
+                        return;
+                    }
+
+                    var table = angular.element('<table class="ui table">');
+                    var thead = angular.element('<thead>');
+
+                    for (var key in arr[0]) {
+                        thead.append(angular.element('<th>').text(key));
+                    }
+                    var tbody = angular.element('<tbody>');
+
+                    for (var i = 0; i < arr.length; i++) {
+
+                        var row = angular.element('<tr>');
+
+                        for (var key in arr[i]) {
+                            row.append(angular.element('<td>').text(arr[i][key]));
+                        }
+
+                        tbody.append(row);
+                    }
+
+                    table.append(thead);
+                    table.append(tbody);
+                    element.append(table);
+                }
+            };
+        });
+    </script>
+</head>
+
+<body>
+    <div class="ui container" ng-controller="mainCtrl">
+        <h1>HomeWork #1</h1>
+        <div my-table="people"></div>
+    </div>
+</body>
+
+</html>

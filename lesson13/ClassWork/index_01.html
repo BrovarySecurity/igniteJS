@@ -1,0 +1,39 @@
+<!--
+
+###Задача1
+Создайте страницу с элементом div и кнопкой. Реализуйте следующее:
+При нажатии на кнопку элементу div поочердно присваиваются 2 CSS-класса
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="toDo">
+
+<head>
+    <title>ClassWork #1</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var toDo = angular.module("toDo", []);
+
+        toDo.controller("ToDoCtrl", function ($scope) {
+            $scope.add = function () {
+                $scope.className = ['red', 'big'];
+            }
+
+        });
+    </script>
+</head>
+
+<body ng-controller="ToDoCtrl">
+    <div class="ui container">
+        <h1>ClassWork #1</h1>
+        <i ng-class="className" class="users icon"></i>
+        <button ng-click="add()" class="ui primary button">
+            Add Class
+        </button>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!--
+
+###Задача 1
+Создайте сервис, который предоставляет стандартные математические операции – сложение, умножение и т.д. Используйте три разных способа для создания сервиса.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="toDo">
+
+<head>
+    <title>HomeWork #1</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var app = angular.module('toDo', []);
+
+        app.factory("mFactory", function () {
+            return {
+                add: function (a, b) {
+                    return +a + +b;
+                },
+                sub: function (a, b) {
+                    return a - b;
+                },
+                mult: function (a, b) {
+                    return a * b;
+                },
+                div: function (a, b) {
+                    return a / b;
+                }
+            }
+        });
+
+        app.service("mServise", function () {
+            this.add = function (a, b) {
+                return +a + +b;
+            };
+            this.sub = function (a, b) {
+                return a - b;
+            };
+            this.mult = function (a, b) {
+                return a * b;
+            };
+            this.div = function (a, b) {
+                return a / b;
+            }
+        });
+
+        app.provider("mProvider", function () {
+            return {
+                $get: function () {
+                    return {
+                        add: function (a, b) {
+                            return +a + +b;
+                        },
+                        sub: function (a, b) {
+                            return a - b;
+                        },
+                        mult: function (a, b) {
+                            return a * b;
+                        },
+                        div: function (a, b) {
+                            return a / b;
+                        }
+                    }
+                }
+            }
+        });
+        app.controller('mainCtrl', ['$scope', "mFactory", "mServise", "mProvider", function ($scope, mFactory, mServise, mProvider) {
+            $scope.doAdd = function () {
+                $scope.result1 = mFactory.add($scope.one, $scope.two);
+                $scope.result2 = mServise.add($scope.one, $scope.two);
+                $scope.result3 = mProvider.add($scope.one, $scope.two);
+            };
+
+            $scope.doSub = function () {
+                $scope.result1 = mFactory.sub($scope.one, $scope.two);
+                $scope.result2 = mServise.sub($scope.one, $scope.two);
+                $scope.result3 = mProvider.sub($scope.one, $scope.two);
+            };
+
+            $scope.doMult = function () {
+                $scope.result1 = mFactory.mult($scope.one, $scope.two);
+                $scope.result2 = mServise.mult($scope.one, $scope.two);
+                $scope.result3 = mProvider.mult($scope.one, $scope.two);
+            };
+
+            $scope.doDiv = function () {
+                $scope.result1 = mFactory.div($scope.one, $scope.two);
+                $scope.result2 = mServise.div($scope.one, $scope.two);
+                $scope.result3 = mProvider.div($scope.one, $scope.two);
+            };
+        }]);
+    </script>
+</head>
+
+<body ng-controller="mainCtrl">
+    <div class="ui container">
+        <h1>HomeWork #1</h1>
+        <div class="ui input">
+            <input ng-model="one" placeholder="0" type="text">
+        </div>
+        <button ng-click="doAdd()" class="ui button">
+            +
+        </button>
+        <button ng-click="doSub()" class="ui button">
+            -
+        </button>
+        <button ng-click="doMult()" class="ui button">
+            *
+        </button>
+        <button ng-click="doDiv()" class="ui button">
+            /
+        </button>
+        <div class="ui input">
+            <input ng-model="two" placeholder="0" type="text">
+        </div>
+        <div class="ui message">
+            <div class="header">
+                Result:
+            </div>
+            <p><b>Factory</b> : {{result1}}</p>
+            <p><b>Service</b> : {{result2}}</p>
+            <p><b>Provider</b> : {{result3}}</p>
+        </div>
+    </div>
+</body>
+
+</html>

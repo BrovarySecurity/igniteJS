@@ -1,0 +1,29 @@
+<!--
+
+###Задача3
+Модифицируйте код предыдущей задачи таким образом, чтобы содержимое поля ввода выводилось на страницу сразу(без нажатия на кнопку)
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="helloWorldApp">
+
+<head>
+    <title>ClassWork #3</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script>
+        var helloWorldApp = angular.module("helloWorldApp", []);
+
+        helloWorldApp.controller("HelloWorldCtrl", function ($scope) {
+        });
+    </script>
+</head>
+
+<body ng-controller="HelloWorldCtrl">
+    <h1>ClassWork #3</h1>
+    <input ng-model="message" type="text" />
+    <div>{{message}}</div>
+</body>
+
+</html>

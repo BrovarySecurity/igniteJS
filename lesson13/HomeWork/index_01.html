@@ -1,0 +1,60 @@
+<!--
+
+###Задача 1
+Создайте три разных CSS класса, которые по-разному будут оформлять блок текста на странице. Реализуйте возможность выбирать стиль для оформления страницы с помощью кнопок или checkbox
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="toDo">
+
+<head>
+    <title>HomeWork #1</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <style>
+        .bold {
+            font-weight: 700;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+    </style>
+    <script>
+        var toDo = angular.module("toDo", []);
+
+        toDo.controller("ToDoCtrl", function ($scope) {
+
+        });
+    </script>
+</head>
+
+<body ng-controller="ToDoCtrl">
+    <div class="ui container">
+        <h1>HomeWork #1</h1>
+        <div class="ui checkbox">
+            <input ng-model="styleObj.bold" tabindex="0" type="checkbox">
+            <label>Жирный</label>
+        </div>
+        <div class="ui checkbox">
+            <input ng-model="styleObj.underline" tabindex="1" type="checkbox">
+            <label>Подчеркнутый</label>
+        </div>
+        <div class="ui checkbox">
+            <input ng-model="styleObj.italic" tabindex="2" type="checkbox">
+            <label>Курсив</label>
+        </div>
+        <br>
+        <div ng-class="styleObj">
+            JavaScript обычно используется как встраиваемый язык для программного доступа к объектам приложений. Наиболее широкое применение находит в браузерах как язык сценариев для придания интерактивности веб-страницам. Основные архитектурные черты: динамическая типизация, слабая типизация, автоматическое управление памятью, прототипное программирование, функции как объекты первого класса.
+        </div>
+    </div>
+</body>
+
+</html>

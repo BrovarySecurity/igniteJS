@@ -1,0 +1,84 @@
+<!--
+
+###Задача 3
+Модифицируйте код предыдущей задачи для реализации валидации формы.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>ClassWork #3</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+
+    <style>
+        form .ng-invalid.ng-dirty {
+            background-color: #fff6f6!important;
+            border-color: #e0b4b4!important;
+            box-shadow: none!important;
+            color: #9f3a38!important;
+        }
+    </style>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller('mainCtrl', function ($scope) {
+
+            $scope.nameRegex = /^.{3,20}$/;
+            $scope.mailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]+$/;
+            $scope.loginRegex = /^.{6,20}$/;
+            $scope.passRegex = /^.{6,20}$/;
+
+            $scope.showMsg = function () {
+                $scope.message = 'Привет';
+            }
+
+            $scope.fields = [
+                {
+                    label: "Username",
+                    type: "text",
+                    pattern: "nameRegex",
+                    model: "newUser.name"
+                },
+                {
+                    label: "Login",
+                    type: "text",
+                    pattern: "loginRegex",
+                    model: "newUser.login"
+                },
+                {
+                    label: "E-mail",
+                    type: "email",
+                    pattern: "mailRegex",
+                    model: "newUser.email"
+                },
+                {
+                    label: "Password",
+                    type: "password",
+                    pattern: "passRegex",
+                    model: "newUser.pass"
+                }];
+        })
+        app.directive('regForm', function () {
+            return {
+                link: function (scope, element, attributes) {},
+                restrict: "A",
+                // ↓↓↓ если ng-model="{{field.model}}" почему то перестает работать ↓↓↓
+                templateUrl: 'data/form_02.html'
+            };
+        });
+    </script>
+</head>
+
+<body>
+    <div class="ui container" ng-controller="mainCtrl">
+        <h1>ClassWork #3</h1>
+        <div reg-form></div>
+    </div>
+</body>
+
+</html>

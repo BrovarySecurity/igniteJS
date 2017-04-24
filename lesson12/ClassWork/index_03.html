@@ -1,0 +1,137 @@
+<!--
+
+###Задача 3
+Перепишите код предыдущей задачи с использованием директивы ng-include
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="toDo">
+
+<head>
+    <title>ClassWork #2</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var toDo = angular.module("toDo", []);
+
+        toDo.controller("ToDoCtrl", function ($scope) {
+
+            $scope.items = [
+                {
+                    name: "B Item",
+                    price: 10.9,
+                    category: "Category 1",
+                    count: 10,
+                    tax: 1.12,
+                    expiration: 10
+                },
+                {
+                    name: "A Item",
+                    price: 1.1,
+                    category: "Category 1",
+                    count: 8,
+                    tax: 0.55,
+                    expiration: 12
+                },
+                {
+                    name: "D Item",
+                    price: 2.6,
+                    category: "Category 2",
+                    count: 7,
+                    tax: 0.22,
+                    expiration: 5
+                },
+                {
+                    name: "C Item",
+                    price: 17.5,
+                    category: "Category 2",
+                    count: 33,
+                    tax: 2.77,
+                    expiration: 10
+                }];
+
+            $scope.show = {
+                name: true,
+                price: true,
+                category: true,
+                count: true,
+                tax: true,
+                expiration: true
+            };
+        });
+    </script>
+</head>
+
+<body ng-controller="ToDoCtrl">
+    <div class="ui container">
+        <h1>ClassWork #2</h1>
+        <table class="ui celled table">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="ui checkbox">
+                            <input name="example" type="checkbox" ng-model="show.name">
+                            <label>Name</label>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="ui checkbox">
+                            <input name="example" type="checkbox" ng-model="show.price">
+                            <label>Price</label>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="ui checkbox">
+                            <input name="example" type="checkbox" ng-model="show.category">
+                            <label>Category</label>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="ui checkbox">
+                            <input name="example" type="checkbox" ng-model="show.count">
+                            <label>Count</label>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="ui checkbox">
+                            <input name="example" type="checkbox" ng-model="show.tax">
+                            <label>Tax</label>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="ui checkbox">
+                            <input name="example" type="checkbox" ng-model="show.expiration">
+                            <label>Expiration</label>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in items" ng-cloak>
+                    <td>
+                        <ng-include src="show.name ? 'files/name.html' : ''"></ng-include>
+                    </td>
+                    <td>
+                        <ng-include src="show.price ? 'files/price.html' : ''"></ng-include>
+                    </td>
+                    <td>
+                        <ng-include src="show.category ? 'files/category.html' : ''"></ng-include>
+                    </td>
+                    <td>
+                        <ng-include src="show.count ? 'files/count.html' : ''"></ng-include>
+                    </td>
+                    <td>
+                        <ng-include src="show.tax ? 'files/tax.html' : ''"></ng-include>
+                    </td>
+                    <td>
+                        <ng-include src="show.expiration ? 'files/expiration.html' : ''"></ng-include>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

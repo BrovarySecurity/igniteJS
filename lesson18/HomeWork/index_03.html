@@ -1,0 +1,56 @@
+<!--
+
+###Задача 3
+Создайте директиву dialogBox, которая будет выводить на экран в диалоговом окне содержимое элемента, к которому привязана директива.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>HomeWork #3</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <style>
+        .dialogBox {
+            position: relative;
+        }
+
+        .dialog {
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            text-align: center;
+            color: blue;
+            right: 30%;
+            top: 20%;
+            background-color: grey;
+            border: 10px solid #777;
+            border-radius: 10px;
+        }
+    </style>
+    <script>
+        var app = angular.module('myApp', []);
+
+        app.directive('dialogBox', function () {
+            return {
+                restrict: 'AE',
+                transclude: true,
+                template: '<div class="dialogBox"><div class="dialog" ng-transclude></div></div>'
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="ui container">
+        <h1>HomeWork #3</h1>
+        <div dialog-box>
+            Hi!
+        </div>
+    </div>
+</body>
+
+</html>

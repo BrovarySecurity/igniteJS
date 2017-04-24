@@ -1,0 +1,48 @@
+<!--
+
+###Задача 2
+Создайте страницу с двумя кнопками Start и Stop. Реализуйте следующее:
+* при нажатии на кнопку start, на страницу начинают выводиться чила в возрастающем порядке с интервалом 1 с.
+* При нажатии на кнопку stop вывод чисел останавливается.
+* При нажатии на кнопку start отсчет начинается всегда с 0.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="toDo">
+
+<head>
+    <title>ClassWork #2</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var app = new angular.module('toDo', []);
+
+        app.controller("mainCtrl", function ($scope, $interval) {
+            $scope.start = function () {
+                $scope.i = 0;
+
+                stopTime = $interval(function () {
+                    $scope.i++;
+                }, 1000);
+            }
+
+            $scope.stop = function () {
+                $interval.cancel(stopTime);
+            }
+
+        })
+    </script>
+</head>
+
+<body ng-controller="mainCtrl">
+    <div class="ui container">
+        <h1>ClassWork #2</h1>
+        <div>{{i}}</div>
+        <button class="ui primary button" ng-click="start()">Start!</button>
+        <button class="ui primary button" ng-click="stop()">Stop!</button>
+    </div>
+</body>
+
+</html>

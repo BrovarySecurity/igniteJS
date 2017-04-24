@@ -1,0 +1,69 @@
+<!--
+
+###Задача2
+
+Создайте страницу с блоком тектса, полем ввода и кнопкой. Исполььзуя фильтры, реализуйте алгоритм поиска на странице: при вводе значения в поле ввода и нажатии на кнопку пользователю показываются только слова, которые соответствуют введеному значению. Остальные слова скрываются.
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>HomeWork #2</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css">
+    <script>
+        var myApp = angular.module("myApp", [])
+            .controller("mainCtrl", function ($scope) {
+                $scope.items = [
+                    "Введение",
+                    "Основы JavaScript",
+                    "Качество кода",
+                    "Структуры данных",
+                    "Замыкания, область видимости",
+                    "Методы объектов и контекст вызова",
+                    "Некоторые другие возможности",
+                    "ООП в функциональном стиле",
+                    "ООП в прототипном стиле",
+                    "Современные возможности ES-2015"
+            ];
+
+                $scope.showMatch = function () {
+                    if ($scope.input != undefined) {
+                        $scope.text = $scope.input;
+                    } else {
+                        $scope.text = "";
+                    }
+
+                };
+
+                $scope.showFilter = function (item) {
+                    if (!$scope.text) {
+                        return item;
+                    }
+
+                    if (item.indexOf($scope.text) != -1) {
+                        return item;
+                    }
+                }
+            });
+    </script>
+</head>
+
+<body ng-controller="mainCtrl">
+    <div class="ui container">
+        <h1>HomeWork #2</h1>
+        <div class="ui input">
+            <input type="text" ng-model="input" placeholder="Поиск...">
+        </div>
+        <input type="button" class="ui primary button" ng-click="showMatch()" value="Filter">
+        <ul>
+            <li ng-repeat="item in items | filter: showFilter">{{item}}</li>
+        </ul>
+    </div>
+
+</body>
+
+</html>
